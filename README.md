@@ -2,6 +2,8 @@
 
 ## This scripts are from the blog post: 
 
+OWASP_hackazon_API.py is the python script which automates the testing. 
+
 Ensure the scripts are in the right location.
 
 Example: 
