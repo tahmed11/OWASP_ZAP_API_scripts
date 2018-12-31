@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+    <context>
+        <name>Hackazon_API_Context</name>
+        <desc/>
+        <inscope>true</inscope>
+        <incregexes>http://www.hackazon.com/api/.*</incregexes>
+        <tech>
+            <include>Db.MySQL</include>
+            <include>Language.PHP</include>
+            <include>Language.XML</include>
+            <include>OS.Linux</include>
+            <include>WS.Apache</include>
+            <exclude>Db</exclude>
+            <exclude>Db.CouchDB</exclude>
+            <exclude>Db.Firebird</exclude>
+            <exclude>Db.HypersonicSQL</exclude>
+            <exclude>Db.IBM DB2</exclude>
+            <exclude>Db.Microsoft Access</exclude>
+            <exclude>Db.Microsoft SQL Server</exclude>
+            <exclude>Db.MongoDB</exclude>
+            <exclude>Db.Oracle</exclude>
+            <exclude>Db.PostgreSQL</exclude>
+            <exclude>Db.SAP MaxDB</exclude>
+            <exclude>Db.SQLite</exclude>
+            <exclude>Db.Sybase</exclude>
+            <exclude>Language</exclude>
+            <exclude>Language.ASP</exclude>
+            <exclude>Language.C</exclude>
+            <exclude>OS</exclude>
+            <exclude>OS.MacOS</exclude>
+            <exclude>OS.Windows</exclude>
+            <exclude>SCM</exclude>
+            <exclude>SCM.Git</exclude>
+            <exclude>SCM.SVN</exclude>
+            <exclude>WS</exclude>
+            <exclude>WS.IIS</exclude>
+            <exclude>WS.Tomcat</exclude>
+        </tech>
+        <urlparser>
+            <class>org.zaproxy.zap.model.StandardParameterParser</class>
+            <config>{"kvps":"&amp;","kvs":"=","struct":[]}</config>
+        </urlparser>
+        <postparser>
+            <class>org.zaproxy.zap.model.StandardParameterParser</class>
+            <config>{"kvps":"&amp;","kvs":"=","struct":[]}</config>
+        </postparser>
+        <ddns>{"type":"DataDrivenNode","name":"DDN1","pattern":"http://www.hackazon.com/(api/)(.+?)(/.*)"}</ddns>
+        <authentication>
+            <type>4</type>
+            <loggedin>HTTP[^a-z]1.1\s200\sOK</loggedin>
+            <loggedout>HTTP[^a-z]1.1\s401\sUnauthorized</loggedout>
+            <script>
+                <name>hackazon_api_authentication.py</name>
+                <params>RXh0cmFfUE9TVF9kYXRh:&amp;QXV0aF9VUkw=:aHR0cDovL3d3dy5oYWNrYXpvbi5jb20vYXBpL2F1dGg=</params>
+            </script>
+        </authentication>
+        <users>
+            <user>1;true;dGVzdF91c2Vy;4;VXNlcm5hbWU=:dGVzdF91c2Vy&amp;UGFzc3dvcmQ=:MTIzNDU2</user>
+        </users>
+        <forceduser>1</forceduser>
+        <session>
+            <type>1</type>
+        </session>
+        <authorization>
+            <type>0</type>
+            <basic>
+                <header/>
+                <body/>
+                <logic>AND</logic>
+                <code>401</code>
+            </basic>
+        </authorization>
+        <alertFilters>
+            <filter>true;40015;-1;aHR0cDovL3d3dy5oYWNrYXpvbi5jb20vYXBpL2NhdGVnb3J5Kg==;true;cGFnZQ==;</filter>
+        </alertFilters>
+    </context>
+</configuration>
